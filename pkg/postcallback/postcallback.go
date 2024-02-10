@@ -107,10 +107,10 @@ func IsOption(input string) bool {
 	// 入力された文字列がリストのいずれかと一致するか確認
 	for _, option := range options {
 		if input == option {
-			return true
+			return false
 		}
 	}
 
 	// 一致する文字列がない場合はfalseを返す
-	return false
+	return true
 }
