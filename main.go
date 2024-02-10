@@ -15,7 +15,6 @@ func main() {
 	engine.POST("/callback", postcallback.PostCallback)
 	engine.POST("/open_door", opendoor.OpenDoor)
 	
-
 	// 静的ファイルのルートを追加
 	engine.StaticFile("/red", "./public/red.html") // publicディレクトリ内のred.htmlを提供
 	engine.StaticFile("/blue", "./public/blue.html") // publicディレクトリ内のblue.htmlを提供
