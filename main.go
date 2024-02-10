@@ -20,6 +20,9 @@ func main() {
 	engine.StaticFile("/blue", "./public/blue.html") // publicディレクトリ内のblue.htmlを提供
 	engine.StaticFile("/yellow", "./public/yellow.html") // publicディレクトリ内のyellow.htmlを提供
 
+	// 以下のようにすると、publicディレクトリ内のlost.htmlを提供
+	engine.StaticFile("/lost", "./public/lost.html")
+
 	engine.Run(":" + "8080")
 }
 
