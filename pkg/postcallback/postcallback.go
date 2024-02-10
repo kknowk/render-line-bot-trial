@@ -34,10 +34,12 @@ func PostCallback(c *gin.Context) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 
-
-
 				// メッセージからMACアドレスを抽出
 				macAddress := message.Text
+				if !IsOption(macAddress) {
+					// スルー
+					continue
+				}
 				// ユーザーIDとMACアドレスを紐付け
 				if !IsMacAddress(macAddress) {
 					// エラーメッセージをユーザーに送信
@@ -85,9 +87,30 @@ func PostCallback(c *gin.Context) {
 }
 
 func IsMacAddress(input string) bool {
-    // MACアドレスの正規表現パターン
-    macAddressPattern := `^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$`
-    re := regexp.MustCompile(macAddressPattern)
+	// MACアドレスの正規表現パターン
+	macAddressPattern := `^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$`
+	re := regexp.MustCompile(macAddressPattern)
 
-    return re.MatchString(input)
+	return re.MatchString(input)
+}
+
+func IsOption(input string) bool {
+
+	// 一致を確認したい文字列のリスト
+	options := []string{
+		"今日の鍵占い",
+		"初期設定・使い方",
+		"お問い合わせ",
+		"鍵を紛失した",
+	}
+
+	// 入力された文字列がリストのいずれかと一致するか確認
+	for _, option := range options {
+		if input == option {
+			return true
+		}
+	}
+
+	// 一致する文字列がない場合はfalseを返す
+	return false
 }
