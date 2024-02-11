@@ -26,9 +26,6 @@ func SendMessageToLineBot(message string, macAddress string) {
 		return
 	}
 
-	// ここにメッセージを送信するユーザーのIDを設定
-	// toUserID := "U36b4b97e241ad297ccfb51fd50f3f14c" // 送信先のユーザーID
-
 	// メッセージの送信
 	if _, err := bot.PushMessage(toUserID, linebot.NewTextMessage(message)).Do(); err != nil {
 		fmt.Println("メッセージの送信に失敗:", err)
