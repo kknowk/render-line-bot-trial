@@ -3,7 +3,6 @@ package postcallback
 import (
 	"fmt"
 	"regexp"
-	// "net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/v7/linebot"
@@ -43,10 +42,12 @@ func PostCallback(c *gin.Context) {
 				// ユーザーIDとMACアドレスを紐付け
 				if !IsMacAddress(macAddress) {
 					// エラーメッセージをユーザーに送信
+					// エラーメッセージをユーザーに送信
 					_, err := bot.ReplyMessage(
 						event.ReplyToken,
-						linebot.NewTextMessage("MACアドレス "+macAddress+" は不正です。"),
+						linebot.NewTextMessage("😓 ごめんね、MACアドレス "+macAddress+" は不正みたい。もう一度確認してみてね！"),
 					).Do()
+
 					if err != nil {
 						fmt.Print(err)
 					}
@@ -57,7 +58,7 @@ func PostCallback(c *gin.Context) {
 				// 確認メッセージをユーザーに送信
 				_, err := bot.ReplyMessage(
 					event.ReplyToken,
-					linebot.NewTextMessage("MACアドレス "+macAddress+" を登録しました。"),
+					linebot.NewTextMessage("🎵 設定完了！ 🎵\n\n"+macAddress+" を登録したよ🔑\nこれで全部終わり！もし何かあったら、お問い合わせフォームから連絡してね。💌"),
 				).Do()
 				if err != nil {
 					fmt.Print(err)
@@ -65,25 +66,6 @@ func PostCallback(c *gin.Context) {
 			}
 		}
 	}
-
-	// // リクエストボディからデータを抽出するための構造体を定義
-	// var requestData struct {
-	// 	UserID     string `json:"user_id"`
-	// 	MacAddress string `json:"mac_address"`
-	// }
-
-	// // リクエストボディを解析
-	// if err := c.BindJSON(&requestData); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
-	// 	return
-	// }
-
-	// // 抽出したデータをS3に保存
-	// useaws.AssociateUserWithMacAddress(requestData.UserID, requestData.MacAddress)
-
-	// // 応答を送信
-	// c.JSON(http.StatusOK, gin.H{"message": "Data successfully saved to S3"})
-
 }
 
 func IsMacAddress(input string) bool {
