@@ -4,34 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>海坊主の心模様</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f8ff; /* 淡い青色の背景 */
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #a1c4fd); /* グラデーション背景 */
+            font-family: 'Noto Sans JP', sans-serif; /* フォントの最適化 */
             margin: 0;
             padding: 20px;
-            color: #333; /* テキストの基本色 */
+            color: #333;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background-color: #f0f7f0ff;
-            padding: 40px; /* パディングを増やして読みやすさを向上 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* 影をより目立たせて立体感を出す */
-            border-radius: 15px; /* 角の丸みを増やす */
+            padding: 40px;
+            border-radius: 20px;
+            animation: fadeIn 2s ease-out;
+            background-image: url('https://github.com/kknowk/kknowk/assets/131352588/768ae7b6-bc25-4c85-a4e9-ebadafea5192'); /* ここに背景画像のURLを指定 */
+            background-size: cover; /* 背景画像をコンテナサイズに合わせて調整 */
+            background-position: center; /* 背景画像を中央に配置 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            color: #ffffff; /* テキストの色を変更して読みやすくする */
         }
-        h1 {
-            color: #2c3e50; /* タイトルの色を濃くして強調 */
-            margin-bottom: 30px; /* タイトルの下のスペースを増やす */
+        h1, h2 {
+            color: #2c3e50;
         }
         h2 {
-            color: #2980b9; /* サブタイトルの色を変更して区別 */
-            margin-top: 30px; /* セクション間のスペースを増やす */
+            margin-top: 30px;
         }
         p {
-            line-height: 1.8; /* 行間を広げて読みやすくする */
-            color: #34495e; /* テキストの色を少し濃くしてコントラストを上げる */
-            margin-bottom: 20px; /* 段落間のスペースを増やす */
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        a:hover {
+            color: #2980b9; /* ホバーエフェクト */
+            text-decoration: underline;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
